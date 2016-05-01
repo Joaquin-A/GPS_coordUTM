@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.joaquin.gps_coordutm.ConfiguracionActivity"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+
+    <TextView
+        android:id="@+id/textViewConfiguracion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Configuración"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="30dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:orientation="vertical"
+        android:background="@android:color/holo_blue_light"
+        android:layout_below="@+id/textViewConfiguracion" >
+
+        <CheckBox android:id="@+id/checkBoxDireccion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Buscar dirección aproximada (requiere internet)"
+            android:onClick="direccion"
+            android:checked="false"
+            android:buttonTint="@android:color/holo_red_dark" />
+
+        <TextView android:id="@+id/textViewEtiquetaTamanoSMS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Número máximo de caracteres en SMS"
+            />
+
+        <EditText android:id="@+id/editTextTamanoSMS"
+            android:layout_width="wrap_content"
+            android:ems="4"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:text="140"
+            android:enabled="true"
+            android:maxLines="1"
+            android:maxLength="3" />
+        <!--inputType para que permita sólo nº-->
+        <!--android:ems ancho en nº de Ms con la fuente actual-->
+
+        <Switch android:id="@+id/switchSufijo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Añadir coordenadas a SMS"
+            android:buttonTint="@android:color/holo_red_dark"
+            android:checked="true"
+            android:textOff="como prefijo"
+            android:textOn="como sufijo"
+            android:onClick="sufijo2"/>
+
+
+    </LinearLayout>
+
+</RelativeLayout>

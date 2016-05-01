@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.joaquin.gps_coordutm.CoordenadasActivity">
+
+    <TextView android:id="@+id/textviewEtiquetaCoordenadas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Coordenadas"
+        android:textSize="30dp" />
+
+    <LinearLayout android:id="@+id/linearlayoutLatLong"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@android:color/holo_blue_light"
+        android:layout_below="@+id/textviewEtiquetaCoordenadas"
+        >
+        <TextView android:id="@+id/textviewEtiquetaLatLong"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Latitud y longitud (grados decimales)"
+             />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@android:color/holo_green_light"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            >
+            <TextView android:id="@+id/textviewLatitud"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:hint="Latitud (grados decimales)"
+                android:background="@android:color/holo_orange_light"
+                />
+            <TextView android:id="@+id/textviewLongitud"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:hint="Longitud (grados decimales)"
+                android:paddingLeft="5dp"
+                android:background="@android:color/holo_orange_light"
+                 />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/linearlayoutUTM"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@android:color/holo_blue_light"
+        android:layout_below="@+id/linearlayoutLatLong"
+        >
+        <TextView android:id="@+id/textviewEtiquetaUTM"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="UTM (easting, northing, zona)"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@android:color/holo_green_light"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            >
+            <TextView android:id="@+id/textviewEasting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:hint="Easting (metros)"
+                android:paddingLeft="5dp"
+                android:background="@android:color/holo_orange_light"
+                />
+            <TextView android:id="@+id/textviewNorthing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:hint="Northing (metros)"
+                android:paddingLeft="5dp"
+                android:background="@android:color/holo_orange_light"
+                />
+            <TextView android:id="@+id/textviewZona"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:hint="Zona"
+                android:paddingLeft="5dp"
+                android:background="@android:color/holo_orange_light"
+                />
+            <TextView android:id="@+id/textviewLetraZona"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:hint="Letra"
+                android:paddingLeft="5dp"
+                android:background="@android:color/holo_orange_light"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!--Informacón extra -->
+    <LinearLayout android:id="@+id/linearlayoutInfoExtra"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@android:color/holo_blue_light"
+        android:layout_below="@+id/linearlayoutUTM"
+        >
+        <TextView android:id="@+id/textviewEtiquetaInfoExtra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Información extra"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@android:color/holo_green_light"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            >
+            <TextView android:id="@+id/textviewEtiquetaEstadoGPS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Estado GPS:"
+                android:paddingLeft="5dp"
+
+                />
+            <TextView android:id="@+id/textviewEstadoGPS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:hint="GPS"
+                android:background="@android:color/holo_orange_light"
+                android:paddingLeft="5dp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@android:color/holo_green_light"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            >
+            <TextView android:id="@+id/textviewEtiquetaSatelites"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Nº de satélites:"
+                android:paddingLeft="5dp"
+                />
+            <TextView android:id="@+id/textviewSatelites"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:hint="Satélites"
+                android:paddingLeft="5dp"
+                android:background="@android:color/holo_orange_light" />
+            <TextView android:id="@+id/textviewEtiquetaExactitud"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Exactitud (m):"
+                android:paddingLeft="5dp"
+                />
+            <TextView android:id="@+id/textviewExactitud"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:hint="Exactitud"
+                android:paddingLeft="5dp"
+                android:background="@android:color/holo_orange_light" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@android:color/holo_green_light"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            >
+            <TextView android:id="@+id/textviewEtiquetaRumboDispositivo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Rumbo dispositivo:"
+                android:paddingLeft="5dp"
+                />
+            <TextView android:id="@+id/textviewRumboDispositivo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:hint="RumboDisp"
+                android:paddingLeft="5dp"
+                android:background="@android:color/holo_orange_light" />
+        </LinearLayout>
+        <TextView android:id="@+id/textviewEtiquetaDireccion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Dirección aproximada:"
+            android:paddingTop="5dp"
+            android:paddingLeft="5dp"
+
+            />
+        <TextView android:id="@+id/textviewDireccion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:hint="Cally y nº aproximado"
+            android:paddingLeft="10dp"
+            android:background="@android:color/holo_orange_light"
+            />
+    </LinearLayout>
+
+    <TextView android:id="@+id/textviewBitacora"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Información varia"
+        android:layout_below="@+id/linearlayoutInfoExtra"
+        />
+
+    <Button android:id="@+id/buttonConfiguracion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="A configuracion"
+        android:onClick="aConfiguracion"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button android:id="@+id/buttonPuntos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="A Puntos"
+        android:onClick="aPuntos"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button android:id="@+id/buttonSMS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="A SMS"
+        android:onClick="aSMS"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/buttonPuntos"
+        android:layout_toEndOf="@+id/buttonConfiguracion" />
+</RelativeLayout>
