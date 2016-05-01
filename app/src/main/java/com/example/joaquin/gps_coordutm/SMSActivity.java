@@ -10,7 +10,9 @@ import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +43,8 @@ public class SMSActivity extends AppCompatActivity {
         mblnSufijo = shaprePreferencias.getBoolean("Sufijo", false);
         mintMaxTamanoSMS = shaprePreferencias.getInt("TamanoSMS", 140);
 
+        //Si las coordenadas irán como sufijo en el SMS, moveremos algunos TextView
+        if (mblnSufijo) reordenaPresentacion();
 
         /*Limitamos el nº máx de caracteres del edit para que el total tenga la longitud que queremos
         Programaticamente ponemos un valor al equivalente a maxLength en el XML del EditView
@@ -71,6 +75,32 @@ public class SMSActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
             }
         });
+    }
+
+    private void reordenaPresentacion() {
+        TextView txtviwEtiquetaMas = (TextView) findViewById(R.id.textviewEtiquetaMas);
+
+        /* Si la view no tuviera layout_below, habría que crearlo
+        RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                                                                            ViewGroup.LayoutParams.WRAP_CONTENT);
+        p.addRule(RelativeLayout.BELOW, R.id.<below_id>);
+        viewToLayout.setLayoutParams(p);*/
+
+        RelativeLayout.LayoutParams lytprmParams;
+
+
+        lytprmParams = (RelativeLayout.LayoutParams) medttxtCuerpoSMS.getLayoutParams();
+        lytprmParams.addRule(RelativeLayout.BELOW, R.id.textViewSMS);
+
+
+        //Hay que cambiar varios pues si no habría referencias circulares en el layout
+        lytprmParams = (RelativeLayout.LayoutParams) txtviwEtiquetaMas.getLayoutParams();
+        lytprmParams.addRule(RelativeLayout.BELOW, R.id.edittextCuerpoSMS);
+
+        lytprmParams = (RelativeLayout.LayoutParams) mtxtviwCoordenadas.getLayoutParams();
+        lytprmParams.addRule(RelativeLayout.BELOW, R.id.textviewEtiquetaMas);
+
+
     }
 
     public void enviaSMS (View v) {
