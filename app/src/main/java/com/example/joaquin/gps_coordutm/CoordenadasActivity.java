@@ -149,9 +149,14 @@ public class CoordenadasActivity extends AppCompatActivity {
     public void aSMS (View v) {
         String strLatitud = ((TextView) findViewById(R.id.textviewLatitud)).getText().toString();
         String strLongitud = ((TextView) findViewById(R.id.textviewLongitud)).getText().toString();
+        String strCoordenadas;
 
-        //Open Street Map, Google Maps... sólo entienden las coordenadas en formato inglés
-        String strCoordenadas = strLatitud.replace(',' , '.') + "," + strLongitud.replace(',' , '.');
+        if (!strLatitud.isEmpty() && !strLongitud.isEmpty())
+            //Open Street Map, Google Maps... sólo entienden las coordenadas en formato decimal inglés
+            strCoordenadas = strLatitud.replace(',' , '.') + "," + strLongitud.replace(',' , '.');
+        else
+            strCoordenadas = "No hay coordenadas establecidas";
+
 
         Intent intentASMS = new Intent();
 

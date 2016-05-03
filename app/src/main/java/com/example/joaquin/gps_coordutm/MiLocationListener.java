@@ -64,13 +64,13 @@ public class MiLocationListener implements LocationListener {
     @Override
     public void onProviderDisabled(String provider) {
         // Este método se ejecuta cuando el GPS es desactivado
-        mprincipalActivity.mtxtviwEstadoGPS.setText("GPS ha sido desactivado");
+        mprincipalActivity.mtxtviwEstadoGPS.setText("GPS desactivado");
     }
 
     @Override
     public void onProviderEnabled(String provider) {
         // Este método se ejecuta cuando el GPS es activado
-        mprincipalActivity.mtxtviwEstadoGPS.setText("GPS ha sido activado");
+        mprincipalActivity.mtxtviwEstadoGPS.setText("GPS activado");
     }
 
     @Override
@@ -83,6 +83,7 @@ public class MiLocationListener implements LocationListener {
         // espera que esté disponible en breve
         // AVAILABLE -> Disponible
 
+        //ToDo: Usar directamente las etiquetas en vez del valor para legibilidad
         switch (status) {
             case 0:
                 // OUT_OF_SERVICE
@@ -102,7 +103,7 @@ public class MiLocationListener implements LocationListener {
     private String puntoCardinal (float fltAngulo) {
 
         String strAngulo = String.format("%03.1f", fltAngulo);
-        String strPuntoCardinal = "X";
+        String strPuntoCardinal = "Desconocido";
 
         //https://es.wikipedia.org/wiki/Rosa_de_los_vientos#Anexo:_Tabulaci.C3.B3n_angular_de_los_puntos_cardinales_por_cuadrantes
         if (fltAngulo > 337.5 || fltAngulo <= 22.5 )

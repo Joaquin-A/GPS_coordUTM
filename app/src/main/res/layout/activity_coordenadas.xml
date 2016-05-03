@@ -20,20 +20,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@android:color/holo_blue_light"
+
         android:layout_below="@+id/textviewEtiquetaCoordenadas"
         >
         <TextView android:id="@+id/textviewEtiquetaLatLong"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Latitud y longitud (grados decimales)"
              />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="@android:color/holo_green_light"
+
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
             >
@@ -41,16 +41,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:hint="Latitud (grados decimales)"
-                android:background="@android:color/holo_orange_light"
+                android:hint="Latitud (grad. decim.)"
+                android:textStyle="bold"
+
                 />
             <TextView android:id="@+id/textviewLongitud"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:hint="Longitud (grados decimales)"
+                android:hint="Longitud (grad. decim.)"
+                android:textStyle="bold"
                 android:paddingLeft="5dp"
-                android:background="@android:color/holo_orange_light"
+
                  />
         </LinearLayout>
     </LinearLayout>
@@ -60,20 +62,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@android:color/holo_blue_light"
+
         android:layout_below="@+id/linearlayoutLatLong"
         >
         <TextView android:id="@+id/textviewEtiquetaUTM"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="UTM (easting, northing, zona)"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="UTM (&quot;estitud&quot;, &quot;nortitud&quot;, zona)"
             />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="@android:color/holo_green_light"
+
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
             >
@@ -81,33 +83,37 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:hint="Easting (metros)"
+                android:hint="Estitud (m)"
+                android:textStyle="bold"
                 android:paddingLeft="5dp"
-                android:background="@android:color/holo_orange_light"
+
                 />
             <TextView android:id="@+id/textviewNorthing"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:hint="Northing (metros)"
+                android:hint="Nortitud (m)"
+                android:textStyle="bold"
                 android:paddingLeft="5dp"
-                android:background="@android:color/holo_orange_light"
+
                 />
             <TextView android:id="@+id/textviewZona"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:hint="Zona"
+                android:textStyle="bold"
                 android:paddingLeft="5dp"
-                android:background="@android:color/holo_orange_light"
+
                 />
             <TextView android:id="@+id/textviewLetraZona"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:hint="Letra"
+                android:textStyle="bold"
                 android:paddingLeft="5dp"
-                android:background="@android:color/holo_orange_light"
+
                 />
         </LinearLayout>
     </LinearLayout>
@@ -118,20 +124,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@android:color/holo_blue_light"
+
         android:layout_below="@+id/linearlayoutUTM"
         >
         <TextView android:id="@+id/textviewEtiquetaInfoExtra"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Información extra"
             />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="@android:color/holo_green_light"
+
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
             >
@@ -148,15 +154,16 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:hint="GPS"
-                android:background="@android:color/holo_orange_light"
+                android:textStyle="bold"
+
                 android:paddingLeft="5dp"
-                />
+                android:enabled="false" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="@android:color/holo_green_light"
+
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
             >
@@ -172,8 +179,10 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:hint="Satélites"
+                android:textStyle="bold"
                 android:paddingLeft="5dp"
-                android:background="@android:color/holo_orange_light" />
+
+                />
             <TextView android:id="@+id/textviewEtiquetaExactitud"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -186,14 +195,16 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:hint="Exactitud"
+                android:textStyle="bold"
                 android:paddingLeft="5dp"
-                android:background="@android:color/holo_orange_light" />
+
+                />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="@android:color/holo_green_light"
+
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
             >
@@ -209,8 +220,10 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:hint="RumboDisp"
+                android:textStyle="bold"
                 android:paddingLeft="5dp"
-                android:background="@android:color/holo_orange_light" />
+
+                />
         </LinearLayout>
         <TextView android:id="@+id/textviewEtiquetaDireccion"
             android:layout_width="wrap_content"
@@ -225,43 +238,56 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:hint="Cally y nº aproximado"
+            android:hint="Calle y nº aproximado"
+            android:textStyle="bold"
             android:paddingLeft="10dp"
-            android:background="@android:color/holo_orange_light"
+
             />
     </LinearLayout>
 
     <TextView android:id="@+id/textviewBitacora"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
         android:hint="Información varia"
+        android:paddingTop="5dp"
         android:layout_below="@+id/linearlayoutInfoExtra"
         />
 
-    <Button android:id="@+id/buttonConfiguracion"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="A configuracion"
-        android:onClick="aConfiguracion"
+        android:orientation="horizontal"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <Button android:id="@+id/buttonPuntos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="A Puntos"
-        android:onClick="aPuntos"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:weightSum="100">
 
-    <Button android:id="@+id/buttonSMS"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="A SMS"
-        android:onClick="aSMS"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/buttonPuntos"
-        android:layout_toEndOf="@+id/buttonConfiguracion" />
+
+        <Button android:id="@+id/buttonConfiguracion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Configuracion"
+            android:onClick="aConfiguracion"
+            android:layout_weight="25"
+
+            />
+        <Button android:id="@+id/buttonSMS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SMS"
+            android:onClick="aSMS"
+            android:layout_weight="50"
+            />
+
+        <Button android:id="@+id/buttonPuntos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Puntos"
+            android:onClick="aPuntos"
+            android:enabled="false"
+            android:layout_weight="25"
+            />
+
+    </LinearLayout>
 </RelativeLayout>
