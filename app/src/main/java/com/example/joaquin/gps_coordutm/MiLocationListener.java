@@ -27,6 +27,7 @@ public class MiLocationListener implements LocationListener {
 
         double dblLatitud = loc.getLatitude();
         double dblLongitud = loc.getLongitude();
+        Bundle bundleExtra = loc.getExtras();
 
         /*Documentación de Location
         http://developer.android.com/reference/android/location/Location.html*/
@@ -56,6 +57,8 @@ public class MiLocationListener implements LocationListener {
             mprincipalActivity.mtxtviwRumboDisp.setText(puntoCardinal(loc.getBearing()));
         else
             mprincipalActivity.mtxtviwRumboDisp.setText("No tiene rumbo");
+
+        mprincipalActivity.mtxtviwNumSatelites.setText(String.format("%d", bundleExtra.getInt("satellites", -999)));
 
         //Llamamos a la búsqueda de dirección y cálculo UTM
         mprincipalActivity.setDireccionYUTM(loc);
