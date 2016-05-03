@@ -8,6 +8,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -43,7 +44,7 @@ public class ConfiguracionActivity extends AppCompatActivity {
         edttxtTamanoSMS.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Toast.makeText(ConfiguracionActivity.this, "A cambiado texto", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(ConfiguracionActivity.this, "A cambiado texto", Toast.LENGTH_SHORT).show();
 
                 SharedPreferences shaprePreferencias = getSharedPreferences("CONFIGURACION_GPSCOORDUTM", Context.MODE_PRIVATE);
                 SharedPreferences.Editor shapreEditor = shaprePreferencias.edit();
@@ -56,12 +57,27 @@ public class ConfiguracionActivity extends AppCompatActivity {
                 }
                 shapreEditor.commit();  //¡¡Que no se olvide esto o no hacemos na!!
             }
+
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
 
             @Override
             public void afterTextChanged(Editable s) {
+            }
+        });
+
+
+        //Añadimos listener porque switch tiene 2 modos de cambio de valor: onClick propiamente y arrastre.
+        //OnCheckedChangeListener abarca ambos
+        switchSufijo.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                SharedPreferences shaprePreferencias = getSharedPreferences("CONFIGURACION_GPSCOORDUTM", Context.MODE_PRIVATE);
+                SharedPreferences.Editor shapreEditor = shaprePreferencias.edit();
+
+                shapreEditor.putBoolean("Sufijo", isChecked);
+                shapreEditor.commit();  //¡¡Que no se olvide esto o no hacemos na!!
             }
         });
     }
@@ -74,19 +90,6 @@ public class ConfiguracionActivity extends AppCompatActivity {
         boolean blnChecked = ((CheckBox) v).isChecked();
 
         shapreEditor.putBoolean("Direccion", blnChecked);
-        shapreEditor.commit();  //¡¡Que no se olvide esto o no hacemos na!!
-    }
-
-    //Se ha pulsado switchSufijo
-    public void sufijo2(View v) {
-        SharedPreferences shaprePreferencias = getSharedPreferences("CONFIGURACION_GPSCOORDUTM", Context.MODE_PRIVATE);
-        SharedPreferences.Editor shapreEditor = shaprePreferencias.edit();
-
-        boolean blnChecked = ((Switch) v).isChecked();
-
-        Toast.makeText(ConfiguracionActivity.this, String.format("Switch %b ", blnChecked), Toast.LENGTH_SHORT).show();
-
-        shapreEditor.putBoolean("Sufijo", blnChecked);
         shapreEditor.commit();  //¡¡Que no se olvide esto o no hacemos na!!
     }
 }
