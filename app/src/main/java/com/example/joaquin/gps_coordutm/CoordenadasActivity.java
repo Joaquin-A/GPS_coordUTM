@@ -28,7 +28,7 @@ public class CoordenadasActivity extends AppCompatActivity {
 
     public TextView mtxtviwLatitud, mtxtviwLongitud,
             mtxtviwEasting, mtxtviwNorthing, mtxtviwZona, mtxtviwLetraZona,
-            mtxtviwSatelites, mtxtviwEstadoGPS, mtxtviwDireccion, mtxtviwBitacora,
+            mtxtviwNumSatelites, mtxtviwEstadoGPS, mtxtviwDireccion, mtxtviwBitacora,
             mtxtviwExactitud, mtxtviwRumboDisp;
 
     public boolean mblnPrefDireccion;
@@ -45,7 +45,7 @@ public class CoordenadasActivity extends AppCompatActivity {
         mtxtviwNorthing = (TextView) findViewById(R.id.textviewNorthing);
         mtxtviwZona = (TextView) findViewById(R.id.textviewZona);
         mtxtviwLetraZona = (TextView) findViewById(R.id.textviewLetraZona);
-        mtxtviwSatelites = (TextView) findViewById(R.id.textviewSatelites);
+        mtxtviwNumSatelites = (TextView) findViewById(R.id.textviewNumSatelites);
         mtxtviwEstadoGPS = (TextView) findViewById(R.id.textviewEstadoGPS);
         mtxtviwDireccion = (TextView) findViewById(R.id.textviewDireccion);
         mtxtviwBitacora = (TextView) findViewById(R.id.textviewBitacora);
