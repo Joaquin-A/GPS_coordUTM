@@ -69,7 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="UTM (&quot;estitud&quot;, &quot;nortitud&quot;, zona)"
+            android:text="UTM (&quot;estitud&quot; (m), &quot;nortitud&quot; (m), zona)"
             />
         <LinearLayout
             android:layout_width="match_parent"
@@ -212,17 +212,31 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Rumbo dispositivo:"
+                android:text="Rumbo disp.:"
                 android:paddingLeft="5dp"
                 />
             <TextView android:id="@+id/textviewRumboDispositivo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:hint="RumboDisp"
+                android:hint="Rumbo"
                 android:textStyle="bold"
                 android:paddingLeft="5dp"
-
+                />
+            <TextView android:id="@+id/textviewEtiquetaVelocidadDispositivo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Velocidad disp. (m/s):"
+                android:paddingLeft="5dp"
+                />
+            <TextView android:id="@+id/textviewVelocidadDispositivo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:hint="Velocidad"
+                android:textStyle="bold"
+                android:paddingLeft="5dp"
                 />
         </LinearLayout>
         <TextView android:id="@+id/textviewEtiquetaDireccion"

@@ -29,7 +29,7 @@ public class CoordenadasActivity extends AppCompatActivity {
     public TextView mtxtviwLatitud, mtxtviwLongitud,
             mtxtviwEasting, mtxtviwNorthing, mtxtviwZona, mtxtviwLetraZona,
             mtxtviwNumSatelites, mtxtviwEstadoGPS, mtxtviwDireccion, mtxtviwBitacora,
-            mtxtviwExactitud, mtxtviwRumboDisp;
+            mtxtviwExactitud, mtxtviwRumboDisp, mtxtviwVelocidadDisp;
 
     public boolean mblnPrefDireccion;
 
@@ -51,6 +51,7 @@ public class CoordenadasActivity extends AppCompatActivity {
         mtxtviwBitacora = (TextView) findViewById(R.id.textviewBitacora);
         mtxtviwExactitud = (TextView) findViewById(R.id.textviewExactitud);
         mtxtviwRumboDisp = (TextView) findViewById(R.id.textviewRumboDispositivo);
+        mtxtviwVelocidadDisp = (TextView) findViewById(R.id.textviewVelocidadDispositivo);
 
         //Creamos un listener para manejar el obj Location
         MiLocationListener mlocListener = new MiLocationListener();
