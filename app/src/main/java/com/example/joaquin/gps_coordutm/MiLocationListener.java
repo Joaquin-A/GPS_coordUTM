@@ -28,6 +28,8 @@ public class MiLocationListener implements LocationListener {
         double dblLatitud = loc.getLatitude();
         double dblLongitud = loc.getLongitude();
         Bundle bundleExtra = loc.getExtras();
+        float fltRumbo = loc.getBearing();
+        float fltVelocidad = loc.getSpeed();
 
         /*Documentación de Location
         http://developer.android.com/reference/android/location/Location.html*/
@@ -53,10 +55,16 @@ public class MiLocationListener implements LocationListener {
             mprincipalActivity.mtxtviwExactitud.setText("No tiene exactitud");
 
         //Rumdo dispositivo
-        if (loc.hasBearing())
-            mprincipalActivity.mtxtviwRumboDisp.setText(puntoCardinal(loc.getBearing()));
+        if (fltRumbo != 0.0)
+            mprincipalActivity.mtxtviwRumboDisp.setText(puntoCardinal(fltRumbo));
         else
             mprincipalActivity.mtxtviwRumboDisp.setText("No tiene rumbo");
+
+        //Velocidad dispositivo
+        if (fltVelocidad  != 0.0)
+            mprincipalActivity.mtxtviwVelocidadDisp.setText(String.format("%.1f",fltVelocidad));
+        else
+            mprincipalActivity.mtxtviwVelocidadDisp.setText("No tiene velocidad");
 
         mprincipalActivity.mtxtviwNumSatelites.setText(String.format("%d", bundleExtra.getInt("satellites", -999)));
 
