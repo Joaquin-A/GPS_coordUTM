@@ -98,15 +98,15 @@ public class MiLocationListener implements LocationListener {
         switch (status) {
             case 0:
                 // OUT_OF_SERVICE
-                mprincipalActivity.mtxtviwBitacora.setText("GPS fuera de servicio");
+                mprincipalActivity.mtxtviwBitacora.setText(String.format("%s fuera de servicio", provider));
                 break;
             case 1:
                 //TEMPORARILY_UNAVAILABLE
-                mprincipalActivity.mtxtviwBitacora.setText("GPS temporalmente no disponible");
+                mprincipalActivity.mtxtviwBitacora.setText(String.format("%s temporalmente no disponible", provider));
                 break;
             case 2:
                 //AVAILABLE
-                mprincipalActivity.mtxtviwBitacora.setText("GPS disponilbe");
+                mprincipalActivity.mtxtviwBitacora.setText(String.format("%s disponilbe", provider));
                 break;
         }
     }
