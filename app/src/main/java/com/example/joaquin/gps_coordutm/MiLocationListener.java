@@ -84,13 +84,13 @@ public class MiLocationListener implements LocationListener {
     @Override
     public void onProviderDisabled(String provider) {
         // Este método se ejecuta cuando el GPS es desactivado
-        mprincipalActivity.mtxtviwEstadoGPS.setText("GPS desactivado");
+        mprincipalActivity.mtxtviwEstadoGPS.setText(String.format("%s desactivado", provider));
     }
 
     @Override
     public void onProviderEnabled(String provider) {
         // Este método se ejecuta cuando el GPS es activado
-        mprincipalActivity.mtxtviwEstadoGPS.setText("GPS activado");
+        mprincipalActivity.mtxtviwEstadoGPS.setText(String.format("%s activado", provider));
     }
 
     @Override
