@@ -3,6 +3,7 @@ package com.example.joaquin.gps_coordutm;
 import android.location.Location;
 import android.location.LocationListener;
 import android.os.Bundle;
+import android.widget.Toast;
 
 /**
  * Created by joaquin on 20/04/16.
@@ -54,17 +55,25 @@ public class MiLocationListener implements LocationListener {
         else
             mprincipalActivity.mtxtviwExactitud.setText("No tiene exactitud");
 
-        //Rumdo dispositivo
-        if (fltRumbo != 0.0)
-            mprincipalActivity.mtxtviwRumboDisp.setText(puntoCardinal(fltRumbo));
-        else
-            mprincipalActivity.mtxtviwRumboDisp.setText("No tiene rumbo");
-
         //Velocidad dispositivo
-        if (fltVelocidad  != 0.0)
-            mprincipalActivity.mtxtviwVelocidadDisp.setText(String.format("%.1f",fltVelocidad));
-        else
+        if (fltVelocidad  != 0.0) {
+            mprincipalActivity.mtxtviwVelocidadDisp.setText(String.format("%.1f", fltVelocidad));
+            //Mostramos Rumbo dispositivo
+            if (fltRumbo != 0.0)
+                mprincipalActivity.mtxtviwRumboDisp.setText(puntoCardinal(fltRumbo));
+            else
+                mprincipalActivity.mtxtviwRumboDisp.setText("No tiene rumbo");
+        } else {
             mprincipalActivity.mtxtviwVelocidadDisp.setText("No tiene velocidad");
+            //Mostramos rumbo dispositivo condicionado a las preferencias
+            if (!mprincipalActivity.mblnPrefRumboSiVelocidad) {
+                if (fltRumbo != 0.0)
+                    mprincipalActivity.mtxtviwRumboDisp.setText(puntoCardinal(fltRumbo));
+                else
+                    mprincipalActivity.mtxtviwRumboDisp.setText("No tiene rumbo");
+            } else
+                mprincipalActivity.mtxtviwRumboDisp.setText("No mostramos rumbo");
+        }
 
         mprincipalActivity.mtxtviwNumSatelites.setText(String.format("%d", bundleExtra.getInt("satellites", -999)));
 

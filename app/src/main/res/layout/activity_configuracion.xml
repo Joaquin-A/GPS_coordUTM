@@ -29,12 +29,20 @@
 
         android:layout_below="@+id/textViewConfiguracion" >
 
-        <CheckBox android:id="@+id/checkBoxDireccion"
+        <CheckBox android:id="@+id/checkboxDireccion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Buscar dirección aproximada (requiere internet)"
             android:onClick="direccion"
             android:checked="false"
+            android:buttonTint="@android:color/holo_red_dark" />
+
+        <CheckBox android:id="@+id/checkboxRumboSiVelocidad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sólo mostrar rumbo si la velocidad > 0"
+            android:onClick="rumbo"
+            android:checked="true"
             android:buttonTint="@android:color/holo_red_dark" />
 
         <LinearLayout
@@ -48,7 +56,7 @@
                 android:text="Número máximo de caracteres en SMS"
                 />
 
-            <EditText android:id="@+id/editTextTamanoSMS"
+            <EditText android:id="@+id/edittextTamanoSMS"
                 android:ems="3"
                 android:layout_height="wrap_content"
                 android:inputType="number"
