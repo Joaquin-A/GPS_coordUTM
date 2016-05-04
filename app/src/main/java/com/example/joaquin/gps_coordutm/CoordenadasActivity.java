@@ -31,7 +31,8 @@ public class CoordenadasActivity extends AppCompatActivity {
             mtxtviwNumSatelites, mtxtviwEstadoGPS, mtxtviwDireccion, mtxtviwBitacora,
             mtxtviwExactitud, mtxtviwRumboDisp, mtxtviwVelocidadDisp;
 
-    public boolean mblnPrefDireccion;
+    private boolean mblnPrefDireccion;
+    public boolean mblnPrefRumboSiVelocidad;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +83,7 @@ public class CoordenadasActivity extends AppCompatActivity {
         //Comprobamos preferencias
         SharedPreferences shaprePreferencias = getSharedPreferences("CONFIGURACION_GPSCOORDUTM", Context.MODE_PRIVATE);
         mblnPrefDireccion = shaprePreferencias.getBoolean("Direccion", false);
+        mblnPrefRumboSiVelocidad = shaprePreferencias.getBoolean("RumboSiVelocidad", true);
 
         /* TODO Usar substitución de valores en cadenas en vez de concatenar. Es sugerido para facilitar i18n
         Toast.makeText(this, String.format("onCreate mblnPrefDireccion es %s", mblnPrefDireccion), Toast.LENGTH_SHORT).show();
