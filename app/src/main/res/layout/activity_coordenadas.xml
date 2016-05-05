@@ -69,7 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="UTM (&quot;estitud&quot; (m), &quot;nortitud&quot; (m), zona)"
+            android:text="UTM &quot;estitud&quot; (m), &quot;nortitud&quot; (m), zona"
             />
         <LinearLayout
             android:layout_width="match_parent"
@@ -223,22 +223,40 @@
                 android:textStyle="bold"
                 android:paddingLeft="5dp"
                 />
-            <TextView android:id="@+id/textviewEtiquetaVelocidadDispositivo"
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            >
+            <TextView android:id="@+id/textviewEtiquetaVelocidad"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Velocidad disp. (m/s):"
+                android:text="Velocidad:"
                 android:paddingLeft="5dp"
                 />
-            <TextView android:id="@+id/textviewVelocidadDispositivo"
+            <TextView android:id="@+id/textviewVelocidadMS"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:hint="Velocidad"
+                android:hint="Vel m/s"
+                android:textStyle="bold"
+                android:paddingLeft="5dp"
+                />
+            <TextView android:id="@+id/textviewVelocidadKmH"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:hint="Vel km/h"
                 android:textStyle="bold"
                 android:paddingLeft="5dp"
                 />
         </LinearLayout>
+
     </LinearLayout>
 
     <TextView android:id="@+id/textviewBitacora"
