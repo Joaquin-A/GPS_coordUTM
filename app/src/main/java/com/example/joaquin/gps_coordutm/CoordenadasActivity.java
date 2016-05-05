@@ -5,8 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.location.Address;
-import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -17,10 +15,6 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.Locale;
-
 import uk.me.jstott.jcoord.LatLng;
 import uk.me.jstott.jcoord.UTMRef;
 
@@ -29,7 +23,7 @@ public class CoordenadasActivity extends AppCompatActivity {
     public TextView mtxtviwLatitud, mtxtviwLongitud,
             mtxtviwEasting, mtxtviwNorthing, mtxtviwZona, mtxtviwLetraZona,
             mtxtviwNumSatelites, mtxtviwEstadoGPS, mtxtviwDireccion, mtxtviwBitacora,
-            mtxtviwExactitud, mtxtviwRumboDisp, mtxtviwVelocidadDisp;
+            mtxtviwExactitud, mtxtviwRumboDisp, mtxtviwVelocidadMS, mtxtviwVelocidadKmH;
 
     private boolean mblnPrefDireccion;
     public boolean mblnPrefRumboSiVelocidad;
@@ -51,7 +45,8 @@ public class CoordenadasActivity extends AppCompatActivity {
         mtxtviwBitacora = (TextView) findViewById(R.id.textviewBitacora);
         mtxtviwExactitud = (TextView) findViewById(R.id.textviewExactitud);
         mtxtviwRumboDisp = (TextView) findViewById(R.id.textviewRumboDispositivo);
-        mtxtviwVelocidadDisp = (TextView) findViewById(R.id.textviewVelocidadDispositivo);
+        mtxtviwVelocidadMS = (TextView) findViewById(R.id.textviewVelocidadMS);
+        mtxtviwVelocidadKmH = (TextView) findViewById(R.id.textviewVelocidadKmH);
 
         //Creamos un listener para manejar el obj Location
         MiLocationListener mlocListener = new MiLocationListener();
