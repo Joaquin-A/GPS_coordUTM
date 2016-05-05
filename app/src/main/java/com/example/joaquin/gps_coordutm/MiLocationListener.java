@@ -3,7 +3,6 @@ package com.example.joaquin.gps_coordutm;
 import android.location.Location;
 import android.location.LocationListener;
 import android.os.Bundle;
-import android.widget.Toast;
 
 /**
  * Created by joaquin on 20/04/16.
@@ -53,26 +52,29 @@ public class MiLocationListener implements LocationListener {
             //Tomamos sólo la parte entera
             mprincipalActivity.mtxtviwExactitud.setText(String.format("%.0f", loc.getAccuracy()));
         else
-            mprincipalActivity.mtxtviwExactitud.setText("No tiene exactitud");
+            mprincipalActivity.mtxtviwExactitud.setText("--");
 
         //Velocidad dispositivo
-        if (fltVelocidad  != 0.0) {
-            mprincipalActivity.mtxtviwVelocidadDisp.setText(String.format("%.1f", fltVelocidad));
+        if (fltVelocidad  > 0.0) {
+            mprincipalActivity.mtxtviwVelocidadMS.setText(String.format("%.1f m/s", fltVelocidad));
+            //Pasamos a km/h
+            mprincipalActivity.mtxtviwVelocidadKmH.setText(String.format("%.1f km/h", fltVelocidad * 3.6));
             //Mostramos Rumbo dispositivo
             if (fltRumbo != 0.0)
                 mprincipalActivity.mtxtviwRumboDisp.setText(puntoCardinal(fltRumbo));
             else
-                mprincipalActivity.mtxtviwRumboDisp.setText("No tiene rumbo");
+                mprincipalActivity.mtxtviwRumboDisp.setText("--");
         } else {
-            mprincipalActivity.mtxtviwVelocidadDisp.setText("No tiene velocidad");
+            mprincipalActivity.mtxtviwVelocidadMS.setText("--");
+            mprincipalActivity.mtxtviwVelocidadKmH.setText("--");
             //Mostramos rumbo dispositivo condicionado a las preferencias
             if (!mprincipalActivity.mblnPrefRumboSiVelocidad) {
                 if (fltRumbo != 0.0)
                     mprincipalActivity.mtxtviwRumboDisp.setText(puntoCardinal(fltRumbo));
                 else
-                    mprincipalActivity.mtxtviwRumboDisp.setText("No tiene rumbo");
+                    mprincipalActivity.mtxtviwRumboDisp.setText("--");
             } else
-                mprincipalActivity.mtxtviwRumboDisp.setText("No mostramos rumbo");
+                mprincipalActivity.mtxtviwRumboDisp.setText("-x-");
         }
 
         mprincipalActivity.mtxtviwNumSatelites.setText(String.format("%d", bundleExtra.getInt("satellites", -999)));

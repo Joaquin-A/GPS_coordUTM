@@ -22,7 +22,7 @@
         </activity>
         <activity android:name=".PuntosActivity" />
         <activity android:name=".ConfiguracionActivity" />
-        <activity android:name=".SMSActivity"></activity>
+        <activity android:name=".SMSActivity"/>
     </application>
 
 </manifest>
