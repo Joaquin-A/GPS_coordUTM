@@ -29,14 +29,6 @@
 
         android:layout_below="@+id/textViewConfiguracion" >
 
-        <CheckBox android:id="@+id/checkboxDireccion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Buscar dirección aproximada (requiere internet)"
-            android:onClick="direccion"
-            android:checked="false"
-            android:buttonTint="@android:color/holo_red_dark" />
-
         <CheckBox android:id="@+id/checkboxRumboSiVelocidad"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

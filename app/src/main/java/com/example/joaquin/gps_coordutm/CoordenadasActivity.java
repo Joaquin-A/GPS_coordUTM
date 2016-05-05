@@ -48,7 +48,6 @@ public class CoordenadasActivity extends AppCompatActivity {
         mtxtviwLetraZona = (TextView) findViewById(R.id.textviewLetraZona);
         mtxtviwNumSatelites = (TextView) findViewById(R.id.textviewNumSatelites);
         mtxtviwEstadoGPS = (TextView) findViewById(R.id.textviewEstadoGPS);
-        mtxtviwDireccion = (TextView) findViewById(R.id.textviewDireccion);
         mtxtviwBitacora = (TextView) findViewById(R.id.textviewBitacora);
         mtxtviwExactitud = (TextView) findViewById(R.id.textviewExactitud);
         mtxtviwRumboDisp = (TextView) findViewById(R.id.textviewRumboDispositivo);
@@ -91,29 +90,7 @@ public class CoordenadasActivity extends AppCompatActivity {
     }
 
         //Este es llamado por el servicio/listener
-    public void setDireccionYUTM(Location loc) {
-        if (mblnPrefDireccion) {
-            //Obtener la dirección de la calle a partir de la latitud y la longitud
-            if (loc.getLatitude() != 0.0 && loc.getLongitude() != 0.0) {
-                try {
-                    Geocoder geocoder = new Geocoder(this, Locale.getDefault());
-                    //Obtener un listado de direcciones que figuran alrededor de las coordenadas
-                    List<Address> list = geocoder.getFromLocation(loc.getLatitude(), loc.getLongitude(), 1);
-                    if (!list.isEmpty()) {
-                        Address address = list.get(0);
-                        mtxtviwDireccion.setText("Mi dirección es: \n" + address.getAddressLine(0));
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        } else
-            mtxtviwDireccion.setText("Búsqueda desactivada");
-
-        calculaUTM(loc);
-    }
-
-    private void calculaUTM(Location loc) {
+    public void calculaUTM(Location loc) {
         LatLng latlngLocalizacion = new LatLng(loc.getLatitude(), loc.getLongitude());
         UTMRef utmrefLocalizacion = latlngLocalizacion.toUTMRef();
 

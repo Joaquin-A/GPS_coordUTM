@@ -2,10 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.joaquin.gps_coordutm">
 
+    <!--Allows an app to access precise location.-->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!--Allows an application to access extra location provider commands.-->
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
-    <uses-permission android:name="android.permission.READ_LOGS" />
-    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
