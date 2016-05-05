@@ -239,24 +239,6 @@
                 android:paddingLeft="5dp"
                 />
         </LinearLayout>
-        <TextView android:id="@+id/textviewEtiquetaDireccion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Dirección aproximada:"
-            android:paddingTop="5dp"
-            android:paddingLeft="5dp"
-
-            />
-        <TextView android:id="@+id/textviewDireccion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:hint="Calle y nº aproximado"
-            android:textStyle="bold"
-            android:paddingLeft="10dp"
-
-            />
     </LinearLayout>
 
     <TextView android:id="@+id/textviewBitacora"

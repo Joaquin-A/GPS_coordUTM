@@ -27,14 +27,11 @@ public class ConfiguracionActivity extends AppCompatActivity {
 
 
         //Referencias a obj. del layout
-        CheckBox cheboxDireccion = (CheckBox) findViewById(R.id.checkboxDireccion);
         CheckBox cheboxRumboSiVelocidad = (CheckBox) findViewById(R.id.checkboxRumboSiVelocidad);
         EditText edttxtTamanoSMS = (EditText) findViewById(R.id.edittextTamanoSMS);
         Switch switchSufijo = (Switch) findViewById(R.id.switchSufijo);
 
         //Si hay conf. guardada previamente ponemos las views con ese valor
-        if (shaprePreferencias.contains("Direccion"))
-            cheboxDireccion.setChecked(shaprePreferencias.getBoolean("Direccion", false));
         if (shaprePreferencias.contains("RumboSiVelocidad"))
             cheboxRumboSiVelocidad.setChecked(shaprePreferencias.getBoolean("RumboSiVelocidad", true));
         if (shaprePreferencias.contains("Sufijo"))
@@ -83,17 +80,6 @@ public class ConfiguracionActivity extends AppCompatActivity {
                 shapreEditor.commit();  //¡¡Que no se olvide esto o no hacemos na!!
             }
         });
-    }
-
-    //Se ha pulsado checkBoxDireccion
-    public void direccion (View v) {
-        SharedPreferences shaprePreferencias = getSharedPreferences("CONFIGURACION_GPSCOORDUTM", Context.MODE_PRIVATE);
-        SharedPreferences.Editor shapreEditor = shaprePreferencias.edit();
-
-        boolean blnChecked = ((CheckBox) v).isChecked();
-
-        shapreEditor.putBoolean("Direccion", blnChecked);
-        shapreEditor.commit();  //¡¡Que no se olvide esto o no hacemos na!!
     }
 
     //Se ha pulsado checkBoxRumboSiVelocidad
