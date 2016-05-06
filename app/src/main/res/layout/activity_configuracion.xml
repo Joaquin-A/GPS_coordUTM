@@ -26,8 +26,15 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:orientation="vertical"
-
         android:layout_below="@+id/textViewConfiguracion" >
+
+        <CheckBox android:id="@+id/checkboxSMSSiCoordenadas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sólo mostrar botón SMS si hay localización"
+            android:onClick="sms"
+            android:checked="true"
+            android:buttonTint="@android:color/holo_red_dark" />
 
         <CheckBox android:id="@+id/checkboxRumboSiVelocidad"
             android:layout_width="wrap_content"
