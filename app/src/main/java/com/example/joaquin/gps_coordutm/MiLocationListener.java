@@ -79,6 +79,10 @@ public class MiLocationListener implements LocationListener {
 
         mprincipalActivity.mtxtviwNumSatelites.setText(String.format("%d", bundleExtra.getInt("satellites", -999)));
 
+        //Ponemos el indicador de que hay localización
+
+        mprincipalActivity.mblnHayLocalizacion = true;
+
         //Llamamos a la búsqueda de dirección y cálculo UTM
         mprincipalActivity.calculaUTM(loc);
     }

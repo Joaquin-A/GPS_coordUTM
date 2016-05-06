@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,11 +23,14 @@ public class CoordenadasActivity extends AppCompatActivity {
 
     public TextView mtxtviwLatitud, mtxtviwLongitud,
             mtxtviwEasting, mtxtviwNorthing, mtxtviwZona, mtxtviwLetraZona,
-            mtxtviwNumSatelites, mtxtviwEstadoGPS, mtxtviwDireccion, mtxtviwBitacora,
+            mtxtviwNumSatelites, mtxtviwEstadoGPS, mtxtviwBitacora,
             mtxtviwExactitud, mtxtviwRumboDisp, mtxtviwVelocidadMS, mtxtviwVelocidadKmH;
 
+    public Button mbttnSMS;
+
     private boolean mblnPrefDireccion;
-    public boolean mblnPrefRumboSiVelocidad;
+    public boolean mblnPrefRumboSiVelocidad, mblnPrefSmsSiLocalizacion;
+    public boolean mblnHayLocalizacion = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +51,7 @@ public class CoordenadasActivity extends AppCompatActivity {
         mtxtviwRumboDisp = (TextView) findViewById(R.id.textviewRumboDispositivo);
         mtxtviwVelocidadMS = (TextView) findViewById(R.id.textviewVelocidadMS);
         mtxtviwVelocidadKmH = (TextView) findViewById(R.id.textviewVelocidadKmH);
+        mbttnSMS = (Button) findViewById(R.id.buttonSMS);
 
         //Creamos un listener para manejar el obj Location
         MiLocationListener mlocListener = new MiLocationListener();
@@ -78,13 +83,25 @@ public class CoordenadasActivity extends AppCompatActivity {
         SharedPreferences shaprePreferencias = getSharedPreferences("CONFIGURACION_GPSCOORDUTM", Context.MODE_PRIVATE);
         mblnPrefDireccion = shaprePreferencias.getBoolean("Direccion", false);
         mblnPrefRumboSiVelocidad = shaprePreferencias.getBoolean("RumboSiVelocidad", true);
+        mblnPrefSmsSiLocalizacion = shaprePreferencias.getBoolean("SmsSiLocalizacion", true);
+
+        //Vemos si se activa el botón SMS
+        activaBotonSMS();
 
         /* TODO Usar substitución de valores en cadenas en vez de concatenar. Es sugerido para facilitar i18n
         Toast.makeText(this, String.format("onCreate mblnPrefDireccion es %s", mblnPrefDireccion), Toast.LENGTH_SHORT).show();
          */
     }
 
-        //Este es llamado por el servicio/listener
+    //Vemos si activamos el botón SMS
+    private void activaBotonSMS() {
+        if (mblnPrefSmsSiLocalizacion)
+            mbttnSMS.setEnabled(mblnHayLocalizacion);
+        else
+            mbttnSMS.setEnabled(true);
+    }
+
+    //Este es llamado por el servicio/listener
     public void calculaUTM(Location loc) {
         LatLng latlngLocalizacion = new LatLng(loc.getLatitude(), loc.getLongitude());
         UTMRef utmrefLocalizacion = latlngLocalizacion.toUTMRef();
@@ -102,6 +119,9 @@ public class CoordenadasActivity extends AppCompatActivity {
         //También se podría usar String.valueOf();
         mtxtviwZona.setText(Integer.toString(intLngZone));
         mtxtviwLetraZona.setText(Character.toString(chrLatZone));
+
+        //Vemos si se activa el botón SMS
+        activaBotonSMS();
     }
 
 

@@ -27,11 +27,14 @@ public class ConfiguracionActivity extends AppCompatActivity {
 
 
         //Referencias a obj. del layout
+        CheckBox cheboxSmsSiLocalizacion = (CheckBox) findViewById(R.id.checkboxSMSSiCoordenadas);
         CheckBox cheboxRumboSiVelocidad = (CheckBox) findViewById(R.id.checkboxRumboSiVelocidad);
         EditText edttxtTamanoSMS = (EditText) findViewById(R.id.edittextTamanoSMS);
         Switch switchSufijo = (Switch) findViewById(R.id.switchSufijo);
 
         //Si hay conf. guardada previamente ponemos las views con ese valor
+        if (shaprePreferencias.contains("SmsSiLocalizacion"))
+            cheboxSmsSiLocalizacion.setChecked(shaprePreferencias.getBoolean("SmsSiLocalizacion", true));
         if (shaprePreferencias.contains("RumboSiVelocidad"))
             cheboxRumboSiVelocidad.setChecked(shaprePreferencias.getBoolean("RumboSiVelocidad", true));
         if (shaprePreferencias.contains("Sufijo"))
@@ -90,6 +93,19 @@ public class ConfiguracionActivity extends AppCompatActivity {
         boolean blnChecked = ((CheckBox) v).isChecked();
 
         shapreEditor.putBoolean("RumboSiVelocidad", blnChecked);
+        shapreEditor.commit();  //¡¡Que no se olvide esto o no hacemos na!!
+
+    }
+
+    //Se ha pulsado checkBoxRumboSiVelocidad
+    public void sms (View v) {
+
+        SharedPreferences shaprePreferencias = getSharedPreferences("CONFIGURACION_GPSCOORDUTM", Context.MODE_PRIVATE);
+        SharedPreferences.Editor shapreEditor = shaprePreferencias.edit();
+
+        boolean blnChecked = ((CheckBox) v).isChecked();
+
+        shapreEditor.putBoolean("SmsSiLocalizacion", blnChecked);
         shapreEditor.commit();  //¡¡Que no se olvide esto o no hacemos na!!
 
     }
