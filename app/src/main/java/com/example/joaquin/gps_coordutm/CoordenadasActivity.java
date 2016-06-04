@@ -1,6 +1,7 @@
 package com.example.joaquin.gps_coordutm;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -26,11 +27,20 @@ public class CoordenadasActivity extends AppCompatActivity {
             mtxtviwNumSatelites, mtxtviwEstadoGPS, mtxtviwBitacora,
             mtxtviwExactitud, mtxtviwRumboDisp, mtxtviwVelocidadMS, mtxtviwVelocidadKmH;
 
-    public Button mbttnSMS;
+    public Button mbttnSMS, mbttnPuntos;
 
     private boolean mblnPrefDireccion;
     public boolean mblnPrefRumboSiVelocidad, mblnPrefSmsSiLocalizacion;
     public boolean mblnHayLocalizacion = false;
+
+    public TextView mtxtviwDistanciaHasta, mtxtviwRumboHacia;
+    private TextView mtxtviwEtiquetaDistanciaHasta, mtxtviwEtiquetaRumboHacia, mtxtviwEtiquetaPuntoRef;
+    private TextView mtxtviwLatitudPunto, mtxtviwLongitudPunto;
+
+    static final int IDENTIFICADOR_START_FOR_RESULT_PUNTOS = 1;  // The request code
+    public String mstrLatitudPunto, mstrLongitudPunto;
+    public boolean mblnPunto = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +62,17 @@ public class CoordenadasActivity extends AppCompatActivity {
         mtxtviwVelocidadMS = (TextView) findViewById(R.id.textviewVelocidadMS);
         mtxtviwVelocidadKmH = (TextView) findViewById(R.id.textviewVelocidadKmH);
         mbttnSMS = (Button) findViewById(R.id.buttonSMS);
+        mbttnPuntos = (Button) findViewById(R.id.buttonPuntos);
+
+
+        mtxtviwEtiquetaPuntoRef = (TextView) findViewById(R.id.textviewEtiquetaPuntoRef);
+        mtxtviwEtiquetaRumboHacia = (TextView) findViewById(R.id.textviewEtiquetaRumboHacia);
+        mtxtviwRumboHacia = (TextView) findViewById(R.id.textviewRumboHacia);
+        mtxtviwEtiquetaDistanciaHasta = (TextView) findViewById(R.id.textviewEtiquetaDistanciaHasta);
+        mtxtviwDistanciaHasta = (TextView) findViewById(R.id.textviewDistanciaHasta);
+
+        mtxtviwLatitudPunto = (TextView) findViewById(R.id.textviewLatitudPunto);
+        mtxtviwLongitudPunto = (TextView) findViewById(R.id.textviewLongitudPunto);
 
         //Creamos un listener para manejar el obj Location
         MiLocationListener mlocListener = new MiLocationListener();
@@ -101,6 +122,17 @@ public class CoordenadasActivity extends AppCompatActivity {
             mbttnSMS.setEnabled(true);
     }
 
+    //Vemos si activamos las TextView relativas a punto referencia
+    private void activaPuntoReferencia() {
+        mtxtviwDistanciaHasta.setEnabled(true);
+        mtxtviwRumboHacia.setEnabled(true);;
+        mtxtviwEtiquetaDistanciaHasta.setEnabled(true);
+        mtxtviwEtiquetaRumboHacia.setEnabled(true);
+        mtxtviwEtiquetaPuntoRef.setEnabled(true);
+    }
+
+
+
     //Este es llamado por el servicio/listener
     public void calculaUTM(Location loc) {
         LatLng latlngLocalizacion = new LatLng(loc.getLatitude(), loc.getLongitude());
@@ -120,8 +152,11 @@ public class CoordenadasActivity extends AppCompatActivity {
         mtxtviwZona.setText(Integer.toString(intLngZone));
         mtxtviwLetraZona.setText(Character.toString(chrLatZone));
 
-        //Vemos si se activa el botón SMS
+        //Vemos si se activa el botón SMS (depende de configuración)
         activaBotonSMS();
+
+        //Activamos botón Puntos
+        mbttnPuntos.setEnabled(true);
     }
 
 
@@ -134,11 +169,17 @@ public class CoordenadasActivity extends AppCompatActivity {
     }
 
     public void aPuntos (View v) {
+        String strLatitud = ((TextView) findViewById(R.id.textviewLatitud)).getText().toString();
+        String strLongitud = ((TextView) findViewById(R.id.textviewLongitud)).getText().toString();
+
         Intent intentAPuntos = new Intent();
 
         // Intent explícito
         intentAPuntos.setClass(this, PuntosActivity.class);
-        startActivity(intentAPuntos);
+        intentAPuntos.putExtra("latitud", strLatitud);
+        intentAPuntos.putExtra("longitud", strLongitud);
+        //Lanazamo actividad pero esperando resultado
+        startActivityForResult(intentAPuntos, IDENTIFICADOR_START_FOR_RESULT_PUNTOS);
     }
 
     public void aSMS (View v) {
@@ -148,6 +189,7 @@ public class CoordenadasActivity extends AppCompatActivity {
 
         if (!strLatitud.isEmpty() && !strLongitud.isEmpty())
             //Open Street Map, Google Maps... sólo entienden las coordenadas en formato decimal inglés
+            //No consigo usar Formatter correctamente, así que lo paso a . usando func. de cadena
             strCoordenadas = strLatitud.replace(',' , '.') + "," + strLongitud.replace(',' , '.');
         else
             strCoordenadas = "No hay coordenadas establecidas";
@@ -159,5 +201,26 @@ public class CoordenadasActivity extends AppCompatActivity {
         intentASMS.setClass(this, SMSActivity.class);
         intentASMS.putExtra("coordenadas", strCoordenadas);
         startActivity(intentASMS);
+    }
+
+    @Override
+    //Esperamos respuesta de startActivityForResult()
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch(requestCode) {
+            case (IDENTIFICADOR_START_FOR_RESULT_PUNTOS) : {
+                Toast.makeText(CoordenadasActivity.this, "Copiamos el punto", Toast.LENGTH_SHORT).show();
+                if (resultCode == Activity.RESULT_OK) {
+                    mstrLatitudPunto = data.getStringExtra("latitud");
+                    mstrLongitudPunto = data.getStringExtra("longitud");
+
+                    mtxtviwLatitudPunto.setText(mstrLatitudPunto);
+                    mtxtviwLongitudPunto.setText(mstrLongitudPunto);
+
+                    mblnPunto = true;
+                }
+                break;
+            }
+        }
     }
 }

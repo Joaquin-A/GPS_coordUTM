@@ -10,7 +10,7 @@
     tools:context="com.example.joaquin.gps_coordutm.PuntosActivity">
 
     <TextView
-        android:id="@+id/textViewPuntos"
+        android:id="@+id/textViewEtiquetaPuntos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Puntos"
@@ -18,4 +18,58 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textSize="30dp" />
+
+    <!--Lat long-->
+    <LinearLayout android:id="@+id/linearlayoutLatLong"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+        android:layout_below="@+id/textViewEtiquetaPuntos"
+        >
+        <TextView android:id="@+id/textviewEtiquetaLatLong"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Latitud y longitud (grados decimales)"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            >
+            <TextView android:id="@+id/textviewLatitud"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:hint="Latitud (grad. decim.)"
+                android:textStyle="bold"
+
+                />
+            <TextView android:id="@+id/textviewLongitud"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:hint="Longitud (grad. decim.)"
+                android:textStyle="bold"
+                android:paddingLeft="5dp"
+
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Seleccionar punto"
+        android:id="@+id/buttonSeleccionar"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="seleccionar" />
+
 </RelativeLayout>
