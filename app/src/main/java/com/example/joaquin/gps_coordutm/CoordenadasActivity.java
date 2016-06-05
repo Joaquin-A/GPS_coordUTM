@@ -209,8 +209,8 @@ public class CoordenadasActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         switch(requestCode) {
             case (IDENTIFICADOR_START_FOR_RESULT_PUNTOS) : {
-                Toast.makeText(CoordenadasActivity.this, "Copiamos el punto", Toast.LENGTH_SHORT).show();
                 if (resultCode == Activity.RESULT_OK) {
+                    Toast.makeText(CoordenadasActivity.this, "Copiamos el punto de referencia", Toast.LENGTH_SHORT).show();
                     mstrLatitudPunto = data.getStringExtra("latitud");
                     mstrLongitudPunto = data.getStringExtra("longitud");
 

@@ -7,7 +7,11 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.joaquin.gps_coordutm.PuntosActivity">
+    tools:context="com.example.joaquin.gps_coordutm.PuntosActivity"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+    <!-- Esos focusable... son para evitar que el EditText tome automát. el foco al entrar y
+    se abra el taclado -->
 
     <TextView
         android:id="@+id/textViewEtiquetaPuntos"
@@ -62,14 +66,60 @@
         </LinearLayout>
     </LinearLayout>
 
-    <Button
+    <!--Descripción -->
+    <LinearLayout android:id="@+id/linearlayoutDescripcion"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+        android:layout_below="@+id/linearlayoutLatLong"
+        >
+        <TextView android:id="@+id/textviewEtiqueDescripcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Descripción"
+        />
+        <EditText android:id="@+id/editTextDescripcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Introduce descripción"
+        />
+        <!--android:ems="10"
+        android:layout_below="@+id/textView"
+        android:layout_toRightOf="@+id/textView"
+        android:layout_toEndOf="@+id/textView"
+        android:layout_marginTop="82dp"-->
+
+    </LinearLayout>
+
+    <!-- Botones -->
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Seleccionar punto"
-        android:id="@+id/buttonSeleccionar"
+        android:orientation="horizontal"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:onClick="seleccionar" />
+        android:weightSum="100">
+
+        <Button android:id="@+id/buttonSeleccionar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Seleccionar punto"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_weight="50"
+            android:onClick="seleccionar" />
+
+        <Button android:id="@+id/buttonGuardar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Guardar"
+            android:onClick="guardar"
+            android:layout_weight="50"/>
+    </LinearLayout>
 
 </RelativeLayout>
