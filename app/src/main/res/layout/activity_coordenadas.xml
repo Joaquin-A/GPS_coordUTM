@@ -15,6 +15,7 @@
         android:text="Coordenadas"
         android:textSize="30dp" />
 
+    <!--Lat long-->
     <LinearLayout android:id="@+id/linearlayoutLatLong"
         android:layout_marginTop="5dp"
         android:layout_width="match_parent"
@@ -57,6 +58,7 @@
         </LinearLayout>
     </LinearLayout>
 
+    <!--UTM-->
     <LinearLayout android:id="@+id/linearlayoutUTM"
         android:layout_marginTop="5dp"
         android:layout_width="match_parent"
@@ -259,13 +261,93 @@
 
     </LinearLayout>
 
+    <!--Punto referencia-->
+    <LinearLayout android:id="@+id/linearlayoutPuntoRef"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+        android:layout_below="@+id/linearlayoutInfoExtra"
+        >
+        <TextView android:id="@+id/textviewEtiquetaPuntoRef"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Punto referencia"
+            android:enabled="false" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            >
+            <TextView android:id="@+id/textviewLatitudPunto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:hint="lat. pto."
+                android:paddingLeft="5dp"
+                android:enabled="false" />
+            <TextView android:id="@+id/textviewLongitudPunto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:hint="long. pto."
+                android:textStyle="bold"
+                android:paddingLeft="5dp"
+                android:enabled="false" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            >
+            <TextView android:id="@+id/textviewEtiquetaRumboHacia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Rumbo hacia:"
+                android:paddingLeft="5dp"
+                android:enabled="false" />
+            <TextView android:id="@+id/textviewRumboHacia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:hint="hacia"
+                android:textStyle="bold"
+                android:paddingLeft="5dp"
+                android:enabled="false" />
+            <TextView android:id="@+id/textviewEtiquetaDistanciaHasta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Distancia (m):"
+                android:paddingLeft="5dp"
+                android:enabled="false" />
+            <TextView android:id="@+id/textviewDistanciaHasta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:hint="distancia"
+                android:textStyle="bold"
+                android:paddingLeft="5dp"
+                android:enabled="false" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!--Bitácora-->
     <TextView android:id="@+id/textviewBitacora"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:hint="Información varia"
         android:paddingTop="5dp"
-        android:layout_below="@+id/linearlayoutInfoExtra"
+        android:layout_below="@+id/linearlayoutPuntoRef"
         />
 
     <LinearLayout

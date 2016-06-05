@@ -18,10 +18,10 @@ import android.widget.Toast;
 
 public class SMSActivity extends AppCompatActivity {
 
-    EditText medttxtCuerpoSMS;
-    TextView mtxtviwCaracteresTotal, mtxtviwCoordenadas;
-    Boolean mblnSufijo;
-    int mintMaxTamanoSMS;
+    private EditText medttxtCuerpoSMS;
+    private TextView mtxtviwCaracteresTotal, mtxtviwCoordenadas;
+    private Boolean mblnSufijo;
+    private int mintMaxTamanoSMS;
 
 
     @Override

@@ -83,8 +83,33 @@ public class MiLocationListener implements LocationListener {
 
         mprincipalActivity.mblnHayLocalizacion = true;
 
-        //Llamamos a la búsqueda de dirección y cálculo UTM
+        //Llamamos a cálculo UTM
         mprincipalActivity.calculaUTM(loc);
+
+        //Si hay punto de referencia seleccionado mostramos rumbo y distancia a él
+        if (mprincipalActivity.mblnPunto) {
+            Location locatnPunto = new Location("gps");
+            String strCoordenada;
+            Float fltCoordenada = new Float(0.0);
+
+            strCoordenada = mprincipalActivity.mstrLatitudPunto;
+            //No consigo usar Formatter correctamente, así que paso ',' a '.' usando func. de cadena
+            locatnPunto.setLatitude(fltCoordenada.parseFloat(strCoordenada.replace(',' , '.')));
+
+            strCoordenada = mprincipalActivity.mstrLongitudPunto;
+            //No consigo usar Formatter correctamente, así que paso ',' a '.' usando func. de cadena
+            locatnPunto.setLongitude(fltCoordenada.parseFloat(strCoordenada.replace(',' , '.')));
+
+            float fltRumboHacia = loc.bearingTo(locatnPunto);
+            /*Me volví loco comprobando que bearingTo() devuelve nº<0 cuando estamos al E o S del
+             pto. de ref y hay que calcular 360-nº*/
+            if (fltRumboHacia < 0) {
+                fltRumboHacia = 360 + fltRumboHacia; //"Sumamos" pq en sí es negativo
+            }
+
+            mprincipalActivity.mtxtviwRumboHacia.setText(puntoCardinal(fltRumboHacia));
+            mprincipalActivity.mtxtviwDistanciaHasta.setText(String.format("%.1f", loc.distanceTo(locatnPunto)));
+        }
     }
 
     @Override
@@ -132,22 +157,28 @@ public class MiLocationListener implements LocationListener {
         String strPuntoCardinal = "Desconocido";
 
         //https://es.wikipedia.org/wiki/Rosa_de_los_vientos#Anexo:_Tabulaci.C3.B3n_angular_de_los_puntos_cardinales_por_cuadrantes
-        if (fltAngulo > 337.5 || fltAngulo <= 22.5 )
+        if ((337.5 < fltAngulo && fltAngulo <= 360) || (0 <= fltAngulo && fltAngulo <= 22.5))
             strPuntoCardinal =  "N";
-        else if (fltAngulo > 22.5 && fltAngulo <= 67.5)
+        else if (22.5 < fltAngulo && fltAngulo <= 67.5)
             strPuntoCardinal =  "NE";
-        else if (fltAngulo > 67.5 && fltAngulo <= 112.5)
+        else if (67.5 < fltAngulo && fltAngulo <= 112.5)
             strPuntoCardinal =  "E";
-        else if (fltAngulo > 112.5 && fltAngulo <= 157.5)
+        else if (112.5 < fltAngulo && fltAngulo <= 157.5)
             strPuntoCardinal =  "SE";
-        else if (fltAngulo > 157.5 && fltAngulo <= 202.5)
+        else if (157.5 < fltAngulo && fltAngulo <= 202.5)
             strPuntoCardinal =  "S";
-        else if (fltAngulo > 202.5 && fltAngulo <= 247.5)
+        else if (202.5 < fltAngulo && fltAngulo <= 247.5)
             strPuntoCardinal =  "SO";
-        else if (fltAngulo > 247.5 && fltAngulo <= 292.5)
+        else if (247.5 < fltAngulo && fltAngulo <= 292.5)
             strPuntoCardinal =  "O";
-        else if (fltAngulo > 292.5 && fltAngulo <= 337.5)
+        else if (292.5 < fltAngulo && fltAngulo <= 337.5)
             strPuntoCardinal =  "NO";
+        //Cosa rara 1. Ángulo negativo
+        else if (292.5 < fltAngulo && fltAngulo <= 337.5)
+            strPuntoCardinal =  "¡<0!";
+        //Cosa rara 2. Ángulo > 360
+        else if (292.5 < fltAngulo && fltAngulo <= 337.5)
+            strPuntoCardinal =  "!>360!";
 
         return strAngulo + " " + strPuntoCardinal;
     }
