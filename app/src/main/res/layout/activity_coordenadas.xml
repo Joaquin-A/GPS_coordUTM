@@ -28,6 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
+            android:enabled="false"
             android:text="Latitud y longitud (grados decimales)"
              />
         <LinearLayout
@@ -44,7 +45,7 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:hint="Latitud (grad. decim.)"
                 android:textStyle="bold"
-
+                android:enabled="false"
                 />
             <TextView android:id="@+id/textviewLongitud"
                 android:layout_width="wrap_content"
@@ -53,8 +54,8 @@
                 android:hint="Longitud (grad. decim.)"
                 android:textStyle="bold"
                 android:paddingLeft="5dp"
-
-                 />
+                android:enabled="false"
+                />
         </LinearLayout>
     </LinearLayout>
 
@@ -71,6 +72,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
+            android:enabled="false"
             android:text="UTM &quot;estitud&quot; (m), &quot;nortitud&quot; (m), zona"
             />
         <LinearLayout
@@ -88,7 +90,7 @@
                 android:hint="Estitud (m)"
                 android:textStyle="bold"
                 android:paddingLeft="5dp"
-
+                android:enabled="false"
                 />
             <TextView android:id="@+id/textviewNorthing"
                 android:layout_width="wrap_content"
@@ -97,7 +99,7 @@
                 android:hint="Nortitud (m)"
                 android:textStyle="bold"
                 android:paddingLeft="5dp"
-
+                android:enabled="false"
                 />
             <TextView android:id="@+id/textviewZona"
                 android:layout_width="wrap_content"
@@ -106,7 +108,7 @@
                 android:hint="Zona"
                 android:textStyle="bold"
                 android:paddingLeft="5dp"
-
+                android:enabled="false"
                 />
             <TextView android:id="@+id/textviewLetraZona"
                 android:layout_width="wrap_content"
@@ -115,7 +117,7 @@
                 android:hint="Letra"
                 android:textStyle="bold"
                 android:paddingLeft="5dp"
-
+                android:enabled="false"
                 />
         </LinearLayout>
     </LinearLayout>
@@ -134,6 +136,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Información extra"
+            android:enabled="false"
             />
         <LinearLayout
             android:layout_width="match_parent"
@@ -149,7 +152,7 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Estado GPS:"
                 android:paddingLeft="5dp"
-
+                android:enabled="false"
                 />
             <TextView android:id="@+id/textviewEstadoGPS"
                 android:layout_width="wrap_content"
@@ -175,6 +178,7 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Nº de satélites:"
                 android:paddingLeft="5dp"
+                android:enabled="false"
                 />
             <TextView android:id="@+id/textviewNumSatelites"
                 android:layout_width="wrap_content"
@@ -183,7 +187,7 @@
                 android:hint="Satélites"
                 android:textStyle="bold"
                 android:paddingLeft="5dp"
-
+                android:enabled="false"
                 />
             <TextView android:id="@+id/textviewEtiquetaExactitud"
                 android:layout_width="wrap_content"
@@ -191,6 +195,7 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Exactitud (m):"
                 android:paddingLeft="5dp"
+                android:enabled="false"
                 />
             <TextView android:id="@+id/textviewExactitud"
                 android:layout_width="wrap_content"
@@ -199,7 +204,7 @@
                 android:hint="Exactitud"
                 android:textStyle="bold"
                 android:paddingLeft="5dp"
-
+                android:enabled="false"
                 />
         </LinearLayout>
         <LinearLayout
@@ -216,6 +221,7 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Rumbo disp.:"
                 android:paddingLeft="5dp"
+                android:enabled="false"
                 />
             <TextView android:id="@+id/textviewRumboDispositivo"
                 android:layout_width="wrap_content"
@@ -224,6 +230,7 @@
                 android:hint="Rumbo"
                 android:textStyle="bold"
                 android:paddingLeft="5dp"
+                android:enabled="false"
                 />
         </LinearLayout>
         <LinearLayout
@@ -240,6 +247,7 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Velocidad:"
                 android:paddingLeft="5dp"
+                android:enabled="false"
                 />
             <TextView android:id="@+id/textviewVelocidadMS"
                 android:layout_width="wrap_content"
@@ -248,6 +256,7 @@
                 android:hint="Vel m/s"
                 android:textStyle="bold"
                 android:paddingLeft="5dp"
+                android:enabled="false"
                 />
             <TextView android:id="@+id/textviewVelocidadKmH"
                 android:layout_width="wrap_content"
@@ -256,6 +265,7 @@
                 android:hint="Vel km/h"
                 android:textStyle="bold"
                 android:paddingLeft="5dp"
+                android:enabled="false"
                 />
         </LinearLayout>
 
@@ -288,6 +298,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:hint="lat. pto."
+                android:textStyle="bold"
                 android:paddingLeft="5dp"
                 android:enabled="false" />
             <TextView android:id="@+id/textviewLongitudPunto"

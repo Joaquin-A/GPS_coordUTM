@@ -18,11 +18,11 @@ Manejo de las preferencias
  */
 public class ConfiguracionActivity extends AppCompatActivity {
 
-    private CheckBox cheboxSmsSiLocalizacion;
-    private CheckBox cheboxSmsActualORef;
-    private CheckBox cheboxRumboSiVelocidad;
-    private EditText edttxtTamanoSMS;
-    private Switch switchSufijo;
+    private CheckBox mcheboxSmsSiLocalizacion;
+    private Switch mswitchSmsActualORef;
+    private CheckBox mcheboxRumboSiVelocidad;
+    private EditText medttxtTamanoSMS;
+    private Switch mswitchSufijo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +40,7 @@ public class ConfiguracionActivity extends AppCompatActivity {
 
 
         //Añadimos listener para controlar la entrada de caracteres en el EditText
-        edttxtTamanoSMS.addTextChangedListener(new TextWatcher() {
+        medttxtTamanoSMS.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 //                Toast.makeText(ConfiguracionActivity.this, "A cambiado texto", Toast.LENGTH_SHORT).show();
@@ -69,7 +69,7 @@ public class ConfiguracionActivity extends AppCompatActivity {
 
         //Añadimos listener porque switch tiene 2 modos de cambio de valor: onClick propiamente y arrastre.
         //OnCheckedChangeListener abarca ambos
-        switchSufijo.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        mswitchSufijo.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 SharedPreferences shaprePreferencias = getSharedPreferences("CONFIGURACION_GPSCOORDUTM", Context.MODE_PRIVATE);
@@ -79,29 +79,43 @@ public class ConfiguracionActivity extends AppCompatActivity {
                 shapreEditor.commit();  //¡¡Que no se olvide esto o no hacemos na!!
             }
         });
+
+        //Añadimos listener porque switch tiene 2 modos de cambio de valor: onClick propiamente y arrastre.
+        //OnCheckedChangeListener abarca ambos
+        mswitchSmsActualORef.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                SharedPreferences shaprePreferencias = getSharedPreferences("CONFIGURACION_GPSCOORDUTM", Context.MODE_PRIVATE);
+                SharedPreferences.Editor shapreEditor = shaprePreferencias.edit();
+
+                shapreEditor.putBoolean("SmsActualORef", isChecked);
+                shapreEditor.commit();  //¡¡Que no se olvide esto o no hacemos na!!
+            }
+        });
+
     }
 
     //Referencias a obj. del layout
     private void referenciasAVistas() {
-        cheboxSmsSiLocalizacion = (CheckBox) findViewById(R.id.checkboxSMSSiCoordenadas);
-        cheboxSmsActualORef = (CheckBox) findViewById(R.id.checkboxSMSActualORef);
-        cheboxRumboSiVelocidad = (CheckBox) findViewById(R.id.checkboxRumboSiVelocidad);
-        edttxtTamanoSMS = (EditText) findViewById(R.id.edittextTamanoSMS);
-        switchSufijo = (Switch) findViewById(R.id.switchSufijo);
+        mcheboxSmsSiLocalizacion = (CheckBox) findViewById(R.id.checkboxSMSSiCoordenadas);
+        mswitchSmsActualORef = (Switch) findViewById(R.id.switchSMSActualORef);
+        mcheboxRumboSiVelocidad = (CheckBox) findViewById(R.id.checkboxRumboSiVelocidad);
+        medttxtTamanoSMS = (EditText) findViewById(R.id.edittextTamanoSMS);
+        mswitchSufijo = (Switch) findViewById(R.id.switchSufijo);
     }
 
     //Si hay conf. guardada previamente ponemos las views con ese valor
     private void poneVistasSegunConfiguracion(SharedPreferences shaprePreferencias) {
         if (shaprePreferencias.contains("SmsSiLocalizacion"))
-            cheboxSmsSiLocalizacion.setChecked(shaprePreferencias.getBoolean("SmsSiLocalizacion", true));
+            mcheboxSmsSiLocalizacion.setChecked(shaprePreferencias.getBoolean("SmsSiLocalizacion", true));
         if (shaprePreferencias.contains("SmsActualORef"))
-            cheboxSmsActualORef.setChecked(shaprePreferencias.getBoolean("SmsActualORef", true));
+            mswitchSmsActualORef.setChecked(shaprePreferencias.getBoolean("SmsActualORef", true));
         if (shaprePreferencias.contains("RumboSiVelocidad"))
-            cheboxRumboSiVelocidad.setChecked(shaprePreferencias.getBoolean("RumboSiVelocidad", true));
+            mcheboxRumboSiVelocidad.setChecked(shaprePreferencias.getBoolean("RumboSiVelocidad", true));
         if (shaprePreferencias.contains("Sufijo"))
-            switchSufijo.setChecked(shaprePreferencias.getBoolean("Sufijo", false));
+            mswitchSufijo.setChecked(shaprePreferencias.getBoolean("Sufijo", false));
         if (shaprePreferencias.contains("TamanoSMS"))
-            edttxtTamanoSMS.setText(((Integer) shaprePreferencias.getInt("TamanoSMS", 140)).toString());
+            medttxtTamanoSMS.setText(((Integer) shaprePreferencias.getInt("TamanoSMS", 140)).toString());
     }
 
     //Se ha pulsado checkBoxRumboSiVelocidad
@@ -129,16 +143,4 @@ public class ConfiguracionActivity extends AppCompatActivity {
 
     }
 
-    //Se ha pulsado checkboxSmsActualORef
-    public void smsActual (View v) {
-
-        SharedPreferences shaprePreferencias = getSharedPreferences("CONFIGURACION_GPSCOORDUTM", Context.MODE_PRIVATE);
-        SharedPreferences.Editor shapreEditor = shaprePreferencias.edit();
-
-        boolean blnChecked = ((CheckBox) v).isChecked();
-
-        shapreEditor.putBoolean("SmsActualORef", blnChecked);
-        shapreEditor.commit();  //¡¡Que no se olvide esto o no hacemos na!!
-
-    }
 }

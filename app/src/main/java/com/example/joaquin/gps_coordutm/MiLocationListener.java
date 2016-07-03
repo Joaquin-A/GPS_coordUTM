@@ -80,9 +80,10 @@ public class MiLocationListener implements LocationListener {
         mprincipalActivity.mtxtviwNumSatelites.setText(String.format("%d", bundleExtra.getInt("satellites", -999)));
 
         //Ponemos el indicador de que hay localización
-
         mprincipalActivity.mblnHayLocalizacion = true;
 
+        //Activamos TextViews
+        mprincipalActivity.habilitaTextoCoordenadas(true);
         //Llamamos a cálculo UTM
         mprincipalActivity.calculaUTM(loc);
 
@@ -116,6 +117,7 @@ public class MiLocationListener implements LocationListener {
     public void onProviderDisabled(String provider) {
         // Este método se ejecuta cuando el GPS es desactivado
         mprincipalActivity.mtxtviwEstadoGPS.setText(String.format("%s desactivado", provider));
+        mprincipalActivity.habilitaTextoCoordenadas(false);
     }
 
     @Override
@@ -139,10 +141,12 @@ public class MiLocationListener implements LocationListener {
             case 0:
                 // OUT_OF_SERVICE
                 mprincipalActivity.mtxtviwBitacora.setText(String.format("%s fuera de servicio", provider));
+                mprincipalActivity.habilitaTextoCoordenadas(false);
                 break;
             case 1:
                 //TEMPORARILY_UNAVAILABLE
                 mprincipalActivity.mtxtviwBitacora.setText(String.format("%s temporalmente no disponible", provider));
+                mprincipalActivity.habilitaTextoCoordenadas(false);
                 break;
             case 2:
                 //AVAILABLE
