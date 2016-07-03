@@ -36,6 +36,14 @@
             android:checked="true"
             android:buttonTint="@android:color/holo_red_dark" />
 
+        <CheckBox android:id="@+id/checkboxSMSActualORef"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Adjuntar al SMS loc. actual o referencia"
+            android:onClick="smsActual"
+            android:checked="true"
+            android:buttonTint="@android:color/holo_red_dark" />
+
         <CheckBox android:id="@+id/checkboxRumboSiVelocidad"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

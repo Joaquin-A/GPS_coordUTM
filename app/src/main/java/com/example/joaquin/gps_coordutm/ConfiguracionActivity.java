@@ -2,8 +2,8 @@ package com.example.joaquin.gps_coordutm;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -18,6 +18,12 @@ Manejo de las preferencias
  */
 public class ConfiguracionActivity extends AppCompatActivity {
 
+    private CheckBox cheboxSmsSiLocalizacion;
+    private CheckBox cheboxSmsActualORef;
+    private CheckBox cheboxRumboSiVelocidad;
+    private EditText edttxtTamanoSMS;
+    private Switch switchSufijo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,20 +33,10 @@ public class ConfiguracionActivity extends AppCompatActivity {
 
 
         //Referencias a obj. del layout
-        CheckBox cheboxSmsSiLocalizacion = (CheckBox) findViewById(R.id.checkboxSMSSiCoordenadas);
-        CheckBox cheboxRumboSiVelocidad = (CheckBox) findViewById(R.id.checkboxRumboSiVelocidad);
-        EditText edttxtTamanoSMS = (EditText) findViewById(R.id.edittextTamanoSMS);
-        Switch switchSufijo = (Switch) findViewById(R.id.switchSufijo);
+        referenciasAVistas();
 
         //Si hay conf. guardada previamente ponemos las views con ese valor
-        if (shaprePreferencias.contains("SmsSiLocalizacion"))
-            cheboxSmsSiLocalizacion.setChecked(shaprePreferencias.getBoolean("SmsSiLocalizacion", true));
-        if (shaprePreferencias.contains("RumboSiVelocidad"))
-            cheboxRumboSiVelocidad.setChecked(shaprePreferencias.getBoolean("RumboSiVelocidad", true));
-        if (shaprePreferencias.contains("Sufijo"))
-            switchSufijo.setChecked(shaprePreferencias.getBoolean("Sufijo", false));
-        if (shaprePreferencias.contains("TamanoSMS"))
-            edttxtTamanoSMS.setText(((Integer) shaprePreferencias.getInt("TamanoSMS", 140)).toString());
+        poneVistasSegunConfiguracion(shaprePreferencias);
 
 
         //Añadimos listener para controlar la entrada de caracteres en el EditText
@@ -85,6 +81,29 @@ public class ConfiguracionActivity extends AppCompatActivity {
         });
     }
 
+    //Referencias a obj. del layout
+    private void referenciasAVistas() {
+        cheboxSmsSiLocalizacion = (CheckBox) findViewById(R.id.checkboxSMSSiCoordenadas);
+        cheboxSmsActualORef = (CheckBox) findViewById(R.id.checkboxSMSActualORef);
+        cheboxRumboSiVelocidad = (CheckBox) findViewById(R.id.checkboxRumboSiVelocidad);
+        edttxtTamanoSMS = (EditText) findViewById(R.id.edittextTamanoSMS);
+        switchSufijo = (Switch) findViewById(R.id.switchSufijo);
+    }
+
+    //Si hay conf. guardada previamente ponemos las views con ese valor
+    private void poneVistasSegunConfiguracion(SharedPreferences shaprePreferencias) {
+        if (shaprePreferencias.contains("SmsSiLocalizacion"))
+            cheboxSmsSiLocalizacion.setChecked(shaprePreferencias.getBoolean("SmsSiLocalizacion", true));
+        if (shaprePreferencias.contains("SmsActualORef"))
+            cheboxSmsActualORef.setChecked(shaprePreferencias.getBoolean("SmsActualORef", true));
+        if (shaprePreferencias.contains("RumboSiVelocidad"))
+            cheboxRumboSiVelocidad.setChecked(shaprePreferencias.getBoolean("RumboSiVelocidad", true));
+        if (shaprePreferencias.contains("Sufijo"))
+            switchSufijo.setChecked(shaprePreferencias.getBoolean("Sufijo", false));
+        if (shaprePreferencias.contains("TamanoSMS"))
+            edttxtTamanoSMS.setText(((Integer) shaprePreferencias.getInt("TamanoSMS", 140)).toString());
+    }
+
     //Se ha pulsado checkBoxRumboSiVelocidad
     public void rumbo (View v) {
         SharedPreferences shaprePreferencias = getSharedPreferences("CONFIGURACION_GPSCOORDUTM", Context.MODE_PRIVATE);
@@ -97,7 +116,7 @@ public class ConfiguracionActivity extends AppCompatActivity {
 
     }
 
-    //Se ha pulsado checkBoxRumboSiVelocidad
+    //Se ha pulsado checkBoxSmsSiLocalizacion
     public void sms (View v) {
 
         SharedPreferences shaprePreferencias = getSharedPreferences("CONFIGURACION_GPSCOORDUTM", Context.MODE_PRIVATE);
@@ -106,6 +125,19 @@ public class ConfiguracionActivity extends AppCompatActivity {
         boolean blnChecked = ((CheckBox) v).isChecked();
 
         shapreEditor.putBoolean("SmsSiLocalizacion", blnChecked);
+        shapreEditor.commit();  //¡¡Que no se olvide esto o no hacemos na!!
+
+    }
+
+    //Se ha pulsado checkboxSmsActualORef
+    public void smsActual (View v) {
+
+        SharedPreferences shaprePreferencias = getSharedPreferences("CONFIGURACION_GPSCOORDUTM", Context.MODE_PRIVATE);
+        SharedPreferences.Editor shapreEditor = shaprePreferencias.edit();
+
+        boolean blnChecked = ((CheckBox) v).isChecked();
+
+        shapreEditor.putBoolean("SmsActualORef", blnChecked);
         shapreEditor.commit();  //¡¡Que no se olvide esto o no hacemos na!!
 
     }
