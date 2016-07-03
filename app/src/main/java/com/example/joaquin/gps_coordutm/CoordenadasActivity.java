@@ -128,8 +128,7 @@ public class CoordenadasActivity extends AppCompatActivity {
     }
 
     //Vemos si activamos las TextView relativas a punto referencia
-    private void activaPuntoReferencia() {
-        Toast.makeText(CoordenadasActivity.this, "activaPuntoReferencia", Toast.LENGTH_SHORT).show();
+    private void habilitaTextoPuntoReferencia() {
         mtxtviwEtiquetaPuntoRef.setEnabled(true);
         mtxtviwLatitudPunto.setEnabled(true);
         mtxtviwLongitudPunto.setEnabled(true);
@@ -139,6 +138,47 @@ public class CoordenadasActivity extends AppCompatActivity {
         mtxtviwEtiquetaRumboHacia.setEnabled(true);
     }
 
+    //Vemos si activamos las TextView relativas a punto referencia
+    public void habilitaTextoCoordenadas(boolean blnEstado) {
+        TextView txtViewAux;
+
+        //Textos de etiquetas
+        txtViewAux = (TextView) findViewById(R.id.textviewEtiquetaLatLong);
+        txtViewAux.setEnabled(blnEstado);
+
+        txtViewAux = (TextView) findViewById(R.id.textviewEtiquetaUTM);
+        txtViewAux.setEnabled(blnEstado);
+
+        txtViewAux = (TextView) findViewById(R.id.textviewEtiquetaInfoExtra);
+        txtViewAux.setEnabled(blnEstado);
+
+        txtViewAux = (TextView) findViewById(R.id.textviewEtiquetaEstadoGPS);
+        txtViewAux.setEnabled(blnEstado);
+        txtViewAux = (TextView) findViewById(R.id.textviewEtiquetaNumSatelites);
+        txtViewAux.setEnabled(blnEstado);
+        txtViewAux = (TextView) findViewById(R.id.textviewEtiquetaExactitud);
+        txtViewAux.setEnabled(blnEstado);
+        txtViewAux = (TextView) findViewById(R.id.textviewEtiquetaRumboDispositivo);
+        txtViewAux.setEnabled(blnEstado);
+        txtViewAux = (TextView) findViewById(R.id.textviewEtiquetaVelocidad);
+        txtViewAux.setEnabled(blnEstado);
+
+
+        //Textos con valores
+        mtxtviwLatitud.setEnabled(blnEstado);
+        mtxtviwLongitud.setEnabled(blnEstado);
+
+        mtxtviwEasting.setEnabled(blnEstado);
+        mtxtviwNorthing.setEnabled(blnEstado);
+        mtxtviwZona.setEnabled(blnEstado);
+        mtxtviwLetraZona.setEnabled(blnEstado);
+
+        mtxtviwNumSatelites.setEnabled(blnEstado);
+        mtxtviwExactitud.setEnabled(blnEstado);
+        mtxtviwRumboDisp.setEnabled(blnEstado);
+        mtxtviwVelocidadMS.setEnabled(blnEstado);
+        mtxtviwVelocidadKmH.setEnabled(blnEstado);
+    }
 
 
     //Este es llamado por el servicio/listener
@@ -229,7 +269,7 @@ public class CoordenadasActivity extends AppCompatActivity {
             case (IDENTIFICADOR_START_FOR_RESULT_PUNTOS) : {
                 if (resultCode == Activity.RESULT_OK) {
                     Toast.makeText(CoordenadasActivity.this, "Copiamos el punto de referencia", Toast.LENGTH_SHORT).show();
-                    activaPuntoReferencia();
+                    habilitaTextoPuntoReferencia();
                     mstrLatitudPtoRef = data.getStringExtra("latitud");
                     mstrLongitudPtoRef = data.getStringExtra("longitud");
 
