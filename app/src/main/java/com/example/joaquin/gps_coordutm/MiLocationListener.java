@@ -92,11 +92,11 @@ public class MiLocationListener implements LocationListener {
             String strCoordenada;
             Float fltCoordenada = new Float(0.0);
 
-            strCoordenada = mprincipalActivity.mstrLatitudPunto;
+            strCoordenada = mprincipalActivity.mstrLatitudPtoRef;
             //No consigo usar Formatter correctamente, así que paso ',' a '.' usando func. de cadena
             locatnPunto.setLatitude(fltCoordenada.parseFloat(strCoordenada.replace(',' , '.')));
 
-            strCoordenada = mprincipalActivity.mstrLongitudPunto;
+            strCoordenada = mprincipalActivity.mstrLongitudPtoRef;
             //No consigo usar Formatter correctamente, así que paso ',' a '.' usando func. de cadena
             locatnPunto.setLongitude(fltCoordenada.parseFloat(strCoordenada.replace(',' , '.')));
 

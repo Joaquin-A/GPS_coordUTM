@@ -30,7 +30,7 @@ public class CoordenadasActivity extends AppCompatActivity {
     public Button mbttnSMS, mbttnPuntos;
 
     private boolean mblnPrefDireccion;
-    public boolean mblnPrefRumboSiVelocidad, mblnPrefSmsSiLocalizacion;
+    public boolean mblnPrefRumboSiVelocidad, mblnPrefSmsSiLocalizacion, mblnPrefSmsActualORef;
     public boolean mblnHayLocalizacion = false;
 
     public TextView mtxtviwDistanciaHasta, mtxtviwRumboHacia;
@@ -38,7 +38,7 @@ public class CoordenadasActivity extends AppCompatActivity {
     private TextView mtxtviwLatitudPunto, mtxtviwLongitudPunto;
 
     static final int IDENTIFICADOR_START_FOR_RESULT_PUNTOS = 1;  // The request code
-    public String mstrLatitudPunto, mstrLongitudPunto;
+    public String mstrLatitudPtoRef, mstrLongitudPtoRef;
     public boolean mblnPunto = false;
 
 
@@ -48,22 +48,7 @@ public class CoordenadasActivity extends AppCompatActivity {
         setContentView(R.layout.activity_coordenadas);
 
         //Creamos referencias a las views
-        mtxtviwLatitud = (TextView) findViewById(R.id.textviewLatitud);
-        mtxtviwLongitud = (TextView) findViewById(R.id.textviewLongitud);
-        mtxtviwEasting = (TextView) findViewById(R.id.textviewEasting);
-        mtxtviwNorthing = (TextView) findViewById(R.id.textviewNorthing);
-        mtxtviwZona = (TextView) findViewById(R.id.textviewZona);
-        mtxtviwLetraZona = (TextView) findViewById(R.id.textviewLetraZona);
-        mtxtviwNumSatelites = (TextView) findViewById(R.id.textviewNumSatelites);
-        mtxtviwEstadoGPS = (TextView) findViewById(R.id.textviewEstadoGPS);
-        mtxtviwBitacora = (TextView) findViewById(R.id.textviewBitacora);
-        mtxtviwExactitud = (TextView) findViewById(R.id.textviewExactitud);
-        mtxtviwRumboDisp = (TextView) findViewById(R.id.textviewRumboDispositivo);
-        mtxtviwVelocidadMS = (TextView) findViewById(R.id.textviewVelocidadMS);
-        mtxtviwVelocidadKmH = (TextView) findViewById(R.id.textviewVelocidadKmH);
-        mbttnSMS = (Button) findViewById(R.id.buttonSMS);
-        mbttnPuntos = (Button) findViewById(R.id.buttonPuntos);
-
+        referenciasAVistas();
 
         mtxtviwEtiquetaPuntoRef = (TextView) findViewById(R.id.textviewEtiquetaPuntoRef);
         mtxtviwEtiquetaRumboHacia = (TextView) findViewById(R.id.textviewEtiquetaRumboHacia);
@@ -96,6 +81,25 @@ public class CoordenadasActivity extends AppCompatActivity {
             mlocManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, (LocationListener) mlocListener);
     }
 
+    //Referencias a obj. del layout
+    private void referenciasAVistas() {
+        mtxtviwLatitud = (TextView) findViewById(R.id.textviewLatitud);
+        mtxtviwLongitud = (TextView) findViewById(R.id.textviewLongitud);
+        mtxtviwEasting = (TextView) findViewById(R.id.textviewEasting);
+        mtxtviwNorthing = (TextView) findViewById(R.id.textviewNorthing);
+        mtxtviwZona = (TextView) findViewById(R.id.textviewZona);
+        mtxtviwLetraZona = (TextView) findViewById(R.id.textviewLetraZona);
+        mtxtviwNumSatelites = (TextView) findViewById(R.id.textviewNumSatelites);
+        mtxtviwEstadoGPS = (TextView) findViewById(R.id.textviewEstadoGPS);
+        mtxtviwBitacora = (TextView) findViewById(R.id.textviewBitacora);
+        mtxtviwExactitud = (TextView) findViewById(R.id.textviewExactitud);
+        mtxtviwRumboDisp = (TextView) findViewById(R.id.textviewRumboDispositivo);
+        mtxtviwVelocidadMS = (TextView) findViewById(R.id.textviewVelocidadMS);
+        mtxtviwVelocidadKmH = (TextView) findViewById(R.id.textviewVelocidadKmH);
+        mbttnSMS = (Button) findViewById(R.id.buttonSMS);
+        mbttnPuntos = (Button) findViewById(R.id.buttonPuntos);
+    }
+
     @Override
     public void onResume() {
         super.onResume();  // Always call the superclass method first
@@ -105,6 +109,7 @@ public class CoordenadasActivity extends AppCompatActivity {
         mblnPrefDireccion = shaprePreferencias.getBoolean("Direccion", false);
         mblnPrefRumboSiVelocidad = shaprePreferencias.getBoolean("RumboSiVelocidad", true);
         mblnPrefSmsSiLocalizacion = shaprePreferencias.getBoolean("SmsSiLocalizacion", true);
+        mblnPrefSmsActualORef = shaprePreferencias.getBoolean("SmsActualORef", true);
 
         //Vemos si se activa el botón SMS
         activaBotonSMS();
@@ -183,9 +188,19 @@ public class CoordenadasActivity extends AppCompatActivity {
     }
 
     public void aSMS (View v) {
-        String strLatitud = ((TextView) findViewById(R.id.textviewLatitud)).getText().toString();
-        String strLongitud = ((TextView) findViewById(R.id.textviewLongitud)).getText().toString();
+        String strLatitud;
+        String strLongitud;
         String strCoordenadas;
+
+        //¿Queremos mandar SMS con loc. actual o loc. del punto de referencia?
+        if (mblnPrefSmsActualORef) {
+            strLatitud = ((TextView) findViewById(R.id.textviewLatitud)).getText().toString();
+            strLongitud = ((TextView) findViewById(R.id.textviewLongitud)).getText().toString();
+        } else {
+            strLatitud = mstrLatitudPtoRef;
+            strLongitud = mstrLongitudPtoRef;
+        }
+
 
         if (!strLatitud.isEmpty() && !strLongitud.isEmpty())
             //Open Street Map, Google Maps... sólo entienden las coordenadas en formato decimal inglés
@@ -211,11 +226,11 @@ public class CoordenadasActivity extends AppCompatActivity {
             case (IDENTIFICADOR_START_FOR_RESULT_PUNTOS) : {
                 if (resultCode == Activity.RESULT_OK) {
                     Toast.makeText(CoordenadasActivity.this, "Copiamos el punto de referencia", Toast.LENGTH_SHORT).show();
-                    mstrLatitudPunto = data.getStringExtra("latitud");
-                    mstrLongitudPunto = data.getStringExtra("longitud");
+                    mstrLatitudPtoRef = data.getStringExtra("latitud");
+                    mstrLongitudPtoRef = data.getStringExtra("longitud");
 
-                    mtxtviwLatitudPunto.setText(mstrLatitudPunto);
-                    mtxtviwLongitudPunto.setText(mstrLongitudPunto);
+                    mtxtviwLatitudPunto.setText(mstrLatitudPtoRef);
+                    mtxtviwLongitudPunto.setText(mstrLongitudPtoRef);
 
                     mblnPunto = true;
                 }
