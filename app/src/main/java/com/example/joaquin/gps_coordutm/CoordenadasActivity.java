@@ -129,11 +129,14 @@ public class CoordenadasActivity extends AppCompatActivity {
 
     //Vemos si activamos las TextView relativas a punto referencia
     private void activaPuntoReferencia() {
+        Toast.makeText(CoordenadasActivity.this, "activaPuntoReferencia", Toast.LENGTH_SHORT).show();
+        mtxtviwEtiquetaPuntoRef.setEnabled(true);
+        mtxtviwLatitudPunto.setEnabled(true);
+        mtxtviwLongitudPunto.setEnabled(true);
         mtxtviwDistanciaHasta.setEnabled(true);
         mtxtviwRumboHacia.setEnabled(true);;
         mtxtviwEtiquetaDistanciaHasta.setEnabled(true);
         mtxtviwEtiquetaRumboHacia.setEnabled(true);
-        mtxtviwEtiquetaPuntoRef.setEnabled(true);
     }
 
 
@@ -226,6 +229,7 @@ public class CoordenadasActivity extends AppCompatActivity {
             case (IDENTIFICADOR_START_FOR_RESULT_PUNTOS) : {
                 if (resultCode == Activity.RESULT_OK) {
                     Toast.makeText(CoordenadasActivity.this, "Copiamos el punto de referencia", Toast.LENGTH_SHORT).show();
+                    activaPuntoReferencia();
                     mstrLatitudPtoRef = data.getStringExtra("latitud");
                     mstrLongitudPtoRef = data.getStringExtra("longitud");
 

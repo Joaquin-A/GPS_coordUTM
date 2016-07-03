@@ -288,6 +288,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:hint="lat. pto."
+                android:textStyle="bold"
                 android:paddingLeft="5dp"
                 android:enabled="false" />
             <TextView android:id="@+id/textviewLongitudPunto"
